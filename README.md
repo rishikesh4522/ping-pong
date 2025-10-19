@@ -43,6 +43,7 @@ python main.py
 
 ```
 pygame-pingpong/
+├── assets
 ├── main.py
 ├── requirements.txt
 ├── game/
