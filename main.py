@@ -21,21 +21,25 @@ FPS = 60
 engine = GameEngine(WIDTH, HEIGHT)
 
 def main():
+    engine = GameEngine(WIDTH, HEIGHT)
     running = True
     while running:
-        SCREEN.fill(BLACK)
+        SCREEN.fill((0, 0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
 
         engine.handle_input()
-        engine.update()
+        engine.update(SCREEN)  # pass screen here
         engine.render(SCREEN)
 
         pygame.display.flip()
         clock.tick(FPS)
 
     pygame.quit()
+
+
+
 
 if __name__ == "__main__":
     main()

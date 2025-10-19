@@ -16,7 +16,14 @@ class Paddle:
         return pygame.Rect(self.x, self.y, self.width, self.height)
 
     def auto_track(self, ball, screen_height):
-        if ball.y < self.y:
-            self.move(-self.speed, screen_height)
-        elif ball.y > self.y + self.height:
-            self.move(self.speed, screen_height)
+        # Center positions
+        paddle_center = self.y + self.height / 2
+        ball_center = ball.y + ball.height / 2
+
+        # Smooth movement: move a fraction of the distance each frame
+        speed_factor = 0.15  # smaller = slower and smoother
+        dy = (ball_center - paddle_center) * speed_factor
+
+        # Apply movement, but clamp speed so it’s not too fast
+        dy = max(-10, min(10, dy))  # max vertical step per frame
+        self.move(dy, screen_height)
